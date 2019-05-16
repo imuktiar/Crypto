@@ -36,10 +36,10 @@ exports.getCoin = async function getCoin(req, res) {
   try {
     let list = await Coin.find().exec();
     let currentTime = new Date().getTime();
-    //check to fetch fresh data
+    
     if((currentTime - lastFetched > refreshLimit) || (lastFetched === 0)) {
       lastFetched = currentTime;
-      //comma separated list of coin symbol e.g ETH,BTC
+      
       let coinSymList = list.reduce((merge, coin) => {
         merge+=coin.coinSym+',';
         return merge;
